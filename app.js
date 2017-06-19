@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
-var loremIpsum = require('lorem-ipsum'), output = loremIpsum();
+let loremIpsum = require('lorem-ipsum'), output = loremIpsum();
+
+app.get('/lorem', function(req, res){
+  res.send(loremIpsum({count: 3, units: 'paragraphs', paragraphLowerBound: 3, format: 'html'}));
+});
+
 
 app.get('/lorem/:paragraphs', function(req, res){
   res.send(loremIpsum({count: req.params.paragraphs, units: 'paragraphs', paragraphLowerBound: 3, format: 'html'}));
